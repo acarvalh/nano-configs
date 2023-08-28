@@ -15,20 +15,27 @@ Produce NanoAODs with customizations.
 
 ## Version
 
-The current version is based on [NanoAODv9](https://gitlab.cern.ch/cms-nanoAOD/nanoaod-doc/-/wikis/Releases/NanoAODv9).
+The current version is based on the Run2UL config in CMSSW_13_2_2, so it is a mixture of [NanoAODv9](https://gitlab.cern.ch/cms-nanoAOD/nanoaod-doc/-/wikis/Releases/NanoAODv9) and [NanoAODv12](https://gitlab.cern.ch/cms-nanoAOD/nanoaod-doc/-/wikis/Releases/NanoAODv12).
 
 Customizations:
 
-- Add ParticleNetAK4 for AK4 jets
+- Switched to Puppi jets for the AK4 jet collection.
+- Add the Run2UL version of ParticleNetAK4 (trained on CHS jets) on AK4 Puppi jets.
+- Add the new Run3 ParticleNetAK4 tagger (with regression) and the RobustParTAK4 tagger.
+- Add the new Run3 ParticleNetAK4-based tau taggers.
+- Store all ParticleNet raw scores for AK8 jets.
 
 ---
 
 ## Setup
 
 ```bash
-cmsrel CMSSW_10_6_26
-cd CMSSW_10_6_26/src
+cmsrel CMSSW_13_2_2
+cd CMSSW_13_2_2/src
 cmsenv
+
+git cms-merge-topic -u hqucms:dev/CMSSW_13_2_2/NanoAOD-puppiAK4
+scram b -j8
 ```
 
 ## Production
