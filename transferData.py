@@ -18,10 +18,6 @@ def configLogger(name, loglevel=logging.INFO):
     console.setLevel(loglevel)
     console.setFormatter(logging.Formatter('[%(asctime)s] %(levelname)s: %(message)s'))
     logger.addHandler(console)
-    logfile = logging.FileHandler('autocrab.log')
-    logfile.setLevel(loglevel)
-    logfile.setFormatter(logging.Formatter('[%(asctime)s] %(levelname)s: %(message)s'))
-    logger.addHandler(logfile)
 
 
 logger = logging.getLogger('TransferData')
@@ -147,7 +143,7 @@ def main():
         dataset = ''
         dirnames = f.split('/')
         for i, n in enumerate(dirnames):
-            if 'TeV-' in n:
+            if 'TeV' in n or 'Tune' in n:
                 dataset = n
                 break
             r = re.search(r'(Run20[0-9]+[A-Z])', n)
